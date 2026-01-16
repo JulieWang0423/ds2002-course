@@ -24,7 +24,8 @@
 	},
 
 	// Set the remote user to vscode to avoid issues with the default user (root)
-    "remoteUser": "vscode",
+    // "remoteUser": "vscode",
+	"remoteUser": "root",
 	// Add the IDs of extensions you want installed when the container is created.
 	// "runArgs": ["--env-file",".devcontainer/devcontainer.env"],
 	// "mounts": [ 
