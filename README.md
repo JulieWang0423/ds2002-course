@@ -14,22 +14,27 @@ To stay current with new releases into the course repository, follow these steps
 
 1. Add an upstream source
 ```
-git remote add upstream git@github.com:nmagee/ds2002-course.git
+git remote add upstream https://github.com/ksiller/ds2002-course.git
 ```
-2. Fetch from the upstream branch:
+2. Switch to main branch:
+```
+git switch main
+```
+3. Fetch from the upstream branch:
 ```
 git fetch upstream
 ```
-3. Merge your branch with the upstream branch.
+4. Merge your branch with the upstream branch.
 ```
-git merge upstream/main main
+git merge upstream/main
 ```
 
 This can be run in a single block:
 ```
-git remote add upstream git@github.com:nmagee/ds2002-course.git
+git remote add upstream https://github.com/ksiller/ds2002-course.git
+git switch main
 git fetch upstream
-git merge upstream/main main
+git merge upstream/main
 ```
 
 ## Saving your changes

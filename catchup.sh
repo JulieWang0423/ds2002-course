@@ -8,6 +8,6 @@ then
     git remote add upstream https://github.com/ksiller/ds2002-course.git
 fi
 
-git fetch upstream && git merge upstream/main main
+git switch main && git fetch upstream && git merge upstream/main
 clear
-echo "Sync with DS2002 repository complete."
+echo "Sync of main branch with DS2002 course repository complete."

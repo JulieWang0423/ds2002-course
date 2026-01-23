@@ -27,6 +27,12 @@ Follow the <a href="https://www.rc.virginia.edu/userinfo/hpc/software/jupyterlab
 
 **Enter `ds2002` in the allocation field.**
 
+The form should look like this:
+
+![OOD interactive session request](../docs/images/ood-request.png)
+
+After you click `Launch` it may take a few minutes to start up. This is expected as we are sharing the cluster with hundreds of other users.
+
 ![Open OnDemand JupyterLab](../docs/images/ood-jlab.png)
 
 ### Step 2b: Linux Desktop 
@@ -34,6 +40,10 @@ Follow the <a href="https://www.rc.virginia.edu/userinfo/hpc/software/jupyterlab
 Follow the <a href="https://www.rc.virginia.edu/userinfo/hpc/ood/desktop/" target="_blank" rel="noopener noreferrer">Open OnDemand Desktop</a> instructions.
 
 **Enter `ds2002` in the allocation field.**
+
+![OOD interactive session request](../docs/images/ood-request.png)
+
+After you click `Launch` it may take a few minutes to start up. This is expected as we are sharing the cluster with hundreds of other users.
 
 ![Open OnDemand Desktop](../docs/images/ood-desktop.png)
 
