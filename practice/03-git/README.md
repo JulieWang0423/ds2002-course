@@ -2,7 +2,7 @@
 
 The goal of this activity is to familiarize you with version control using Git and GitHub. These tools are essential for tracking changes in your code, collaborating with others, managing project history, and contributing to open-source projects.
 
-If the initial examples feel like a breeze, challenge yourself with activities in the *Advanced Concepts* section and explore the resource links at the end of this post.
+If the *In-class exercises* and *Additional practice* feel like a breeze, challenge yourself with activities in the *Advanced Concepts* section and explore the resource links at the end of this post.
 
 * Start with the **In-class Exercises**.
 * Continue with the **Additional Practices** section on your own time. 
@@ -10,109 +10,376 @@ If the initial examples feel like a breeze, challenge yourself with activities i
 
 ## In-class exercises
 
-At your table, select one person to set up a new repository on GitHub. Work through these steps:
+### Update your forked repository
 
-### Step 1: Repository Setup
-   * One person in your group sets up a new repository on GitHub 
-   * The creator adds all group members as collaborators to the new repository on GitHub. The repository should have a single `main` branch.
+We talked about the relationship of GitHub repositories, their forks, and local clones. Now it is your turn to pull the latest content from the course repository into your personal fork.
 
-### Step 2: Clone the Repository
-   * All group members clone the new repository to their own environment. Make sure you are not inside any other Git repository! To avoid issues, change to your home directory first:
-     ```bash
-     cd
-     git clone https://github.com/CREATOR_USERNAME/REPO_NAME.git
-     cd REPO_NAME
-     ```
-   Replace `CREATOR_USERNAME` and `REPO_NAME` with the actual GitHub username and repository name.
-   
-   **Important:** Make sure you are **not** inside an existing Git repository when running the `git clone` command. You don't want to create nested Git repositories.
+#### Step 1: Update your local clone (or repo in Codespace)
 
-### Step 3: Create Unique Files
-   * Each group member should create a new text file in their local repository. Use unique filenames to avoid collisions (e.g., `alice.txt`, `bob.txt`). Each team member should commit and push their files to the GitHub repository:
-     ```bash
-     echo "Hello from Alice" > alice.txt
-     git add alice.txt
-     git commit -m "Add alice.txt"
-     git push origin main
-     ```
+* Open a terminal on your computer or Codespace instance in your forked Git repository.
+* Check with `pwd` that you're at the top level of your local repository. Use the `cd` command to change to it if needed.
+* In your local repo, execute the commands shown in the [Updating your fork](../../README.md#updating-your-fork) section (part of the repo's README.md file).
+* Execute `git status` and `git log` to check the updates.
 
-### Step 4: Verify on GitHub
-   * All: Check the presence of the new files on GitHub by visiting the repository page.
+#### Step 2: Push your local changes to your fork on GitHub
 
-### Step 5: Pull Latest Changes
-   * All: Run the following command in your environment to get the latest changes from GitHub:
-     ```bash
-     git pull origin main --merge
-     ```
-     (The `--merge` flag is explicit and avoids warnings in newer Git versions.)
+* In your local repo, execute the commands shown in the [Saving your changes](../../README.md#saving-your-changes) section (also part of the repo's README.md file).
 
-**So far, so good. Let's take it to the next level!**
+**Excellent, your repository is up to date.**
 
-### Step 6: Create Collision File
+## Collaboration with Git/GitHub
 
-When collaborating, team members may be working in parallel on local copies of the same file. This leads to divergence and file version conflicts need to be resolved. Let's simulate such scenario.
+This demo illustrates the collaborative work on two clones (copies) of the same repository. 
 
-   * All: Create a new file `collision.txt` in your local repository. The file should contain a single line with your `first name, favorite animal`. Track, commit, and push it to the remote repo on GitHub:
-     ```bash
-     echo "Alice, cat" > collision.txt
-     git add collision.txt
-     git commit -m "Add collision.txt"
-     git push origin main
-     ```
+>NOTE: You should go through this exercise in groups of two or three. Alternatively, you can simulate this scenario by working in two different directories on your computer or Codespace.
 
-### Step 7: Resolving Merge Conflicts
+### Setting up on computer 1 - Team member 1
 
-**The early bird gets the worm:** If you are the first person to push the `collision.txt` file, you're in luck—the push should go through without a hitch. However, the others will encounter an error message like this:
+This could be in Codespace, or your local computer. Make sure you are not inside another repository! 
+
+**While team member 1 is walking through these steps, the other team member(s) should observe; all team members should discuss as you step through this exercise so you can deepen your understanding.**
+
+#### Tracking and committing files 
+```bash
+cd
+pwd
+ls
+mkdir demo-repo
+cd demo-repo
+git init
+ls -la
+```
+Notice the new `.git` directory. 
 
 ```bash
-! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'https://github.com/YOUR_USERNAME/REPO_NAME.git'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., 'git pull ...') before pushing again.
+echo "Good morning" > greetings.txt
+ls -la
+git status
 ```
 
-**To resolve the conflict:**
+Output:
+```
+On branch main
 
-Starting with the group member next to the first person who successfully pushed, go clockwise and perform the following steps:
+No commits yet
 
-1. Pull with merge to reconcile the differences:
-   ```bash
-   git pull origin main --merge
-   ```
-   (The `--merge` flag is explicit and avoids warnings in newer Git versions.)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	greetings.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+The untracked files section indicates that Git is aware of the new file, but it's not part of the version control yet. Let's `add` the file (for tracking) and commit it. The `commit` creates a reference point of the current version of all tracked files. Think of it as a snapshot. 
+```bash
+git add .
+git commit -m "morning"
+git status
+```
+
+Output:
+```
+On branch main
+nothing to commit, working tree clean
+```
+Notice how the status has changed after the commit. 
+
+The log provides details about the commit history. 
+```bash
+git log
+```
+
+Output:
+```
+commit fbd6cffa05c93452c433b5d6c355797bce5e5cc9 (HEAD -> main)
+Author: ksiller <ksiller@gmail.com>
+Date:   Wed Jan 21 04:25:30 2026 -0500
+
+    morning
+```
+
+Edit `greetings.txt` and save it.
+
+```bash
+echo "Good evening!" > greetings.txt
+
+git status
+git diff
+```
+
+Output:
+```
+diff --git a/greetings.txt b/greetings.txt
+index 9fc8e01..f70861f 100644
+--- a/greetings.txt
++++ b/greetings.txt
+@@ -1 +1 @@
+-Good morning
++Good evening
+```
+The `git diff` command shows us the differences between file versions. By default, it shows the difference between the current version in the filesystem and the last version that was committed. In this case `Good morning` was replaced with `Good evening`.
+
+Let's track and commit those last changes
+```bash
+git add .
+git commit -m "evening"
+git status
+git log
+```
+Confirm the commit in the logs.
+
+#### Checking out different file versions
+
+Let's roll back to the earlier commit *before* we changed `greetings.txt`. We use the unique identifier of the commit that's shown in the `git log` output. In fact we only need the first few characters of the commit hash, e.g. something like "03280fe38" (your hash will look different). 
+
+Now we can `checkout` that earlier file version.
+
+>Note: This puts you in a "detached HEAD" state, which is fine for viewing old versions.
+
+```bash
+git checkout 03280fe38 # update this hash with your actual commit hash from git log
+cat greetings.txt
+```
+Notice the content has changed back to the earlier version: greetings.txt contains `Good morning`.
+
+OK, let's switch back to the latest version. We're working on the main branch (default). `git checkout <branch>` gets the latest committed file versions for that branch.
+```bash
+git checkout main
+git status
+git branch
+```
+
+#### Working on a new branch
+
+Let's create a new branch. Branches allow you to develop code in parallel. This is useful when working on implementing new code features or fixing bugs. It allows working on code modifications without affecting code in the main branch (or other branches).
+```bash
+git switch -c new_day
+git branch
+```
+
+Output:
+```
+Switched to a new branch 'new_day'
+  main
+* new_day
+```
+Notice the `*`. It indicates the branch you're on.
+
+Let's update the file, track and commit it, and check the logs
+```bash
+echo "Yet another day!" > greetings.txt
+cat greetings.txt
+git add .
+git commit -m "another day"
+git log
+```
+
+Output:
+```
+commit 4bf7e286703573669bc2c0925486ec29e025050a (HEAD -> new_day)
+Author: ksiller <ksiller@gmail.com>
+Date:   Wed Jan 21 04:53:38 2026 -0500
+
+    another day
+```
+Notice the `HEAD` pointing to our new branch `new_day`.
+
+Let's switch back to `main`.
+```bash
+git switch main
+git branch
+```
+
+And add another file to main branch
+
+```bash
+echo 'Time to practice' > practice.txt
+git add .
+git commit -m "practice"
+git switch new_day # no practice.txt on this branch
+ls # no practice.txt on this branch
+git switch main  
+ls # and practice.txt is back
+```
+
+#### Linking to repository on GitHub
+
+Create repo `demo-repo` on GitHub. Then connect your local repo to it. By convention the remote is referred to as `origin`. Take note of the new repository's URL on GitHub.
+
+If you are working on your own computer (or any system other than Codespace), you should be able to use your Personal Access Token for authentication and continue with `Option 1: https protocol`. 
+
+If you are in Codespace or would like to explore the use of ssh keys, continue with `Option 2: ssh protocol`.
+
+**Option 1: https protocol**
+
+```bash
+git remote add origin https://github.com/ksiller/demo-repo.git # replace with your url
+git remote -v
+```
+The first command assigns the URL of your repo to the designator `origin`, which is the convention for referencing GitHub repositories. 
+
+To confirm, the `git remote -v` command shows you this association.
+
+Output:
+```
+origin  https://github.com/YOUR_USERNAME/REPO_NAME.git (fetch)
+origin  https://github.com/YOUR_USERNAME/REPO_NAME.git (push)
+```
+Continue with [Pushing all changes](#pushing-all-changes).
+
+**Option 2: ssh protocol**
+
+If you are using Codespace, you have to use the ssh protocol and keys to link your new GitHub repository. Follow these steps:
+
+**1. Create ssh keys**
+```bash
+ssh-keygen
+```
+You will be prompted with three questions:
+- Enter file in which to save the key (/home/vscode/.ssh/id_rsa): 
+- Enter passphrase (empty for no passphrase): 
+- Enter same passphrase again: 
+Don't enter anything, just hit enter/return to accept the default for each of them. 
+
+This will create two files in a hidden directory in `~/.ssh`:
+- `id_rsa` : This is your private key. **Don't share it with anyone.**
+- `id_rsa.pub`: This is your public key. You can place it on other systems to log in there without being prompted for a password.
+
+**2. Print your public key to the screen**
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+Copy the entire output to your clipboard. It starts with `ssh-rsa ...`. This is your public key.
+
+**3. Add your public key to your GitHub account**
    
-   This will create a merge commit.
+Follow the instructions starting at step 2 [Adding a new SSH key to your account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account).
 
-2. Git will pause and indicate that there are conflicts. VSCode (or your editor) will highlight the conflicting lines in `collision.txt`.
+**4. Set the origin URL**
 
-3. **Resolve the conflict:** You want to **append** (not replace) the content so that everyone's entry is included. The file should contain all group members' entries, one per line:
-   ```
-   Alice, cat
-   Bob, dog
-   Carol, bird
-   ```
+Go back to the Codespace terminal. Run these commands.
+```bash
+git remote add origin git@github.com:ksiller/demo-repo.git # replace with your url
+git remote -v
+```
+The first command assigns the URL of your repo to the designator `origin`, which is the convention for referencing GitHub repositories. 
 
-4. After resolving the conflict, stage the resolved file:
-   ```bash
-   git add collision.txt
-   ```
+To confirm, the `git remote -v` command shows you this association.
 
-5. Complete the merge/rebase:
-   ```bash
-   git commit
-   ```
-   This completes the merge commit.
+Output:
+```
+origin  git@github.com:YOUR_USERNAME/REPO_NAME.git (fetch)
+origin  git@github.com:YOUR_USERNAME/REPO_NAME.git (push)
+```
+Continue with [Pushing all changes](#pushing-all-changes).
 
-6. Push your changes:
-   ```bash
-   git push origin main
-   ```
+#### Pushing all changes
 
-7. The next person in the group should repeat steps 1-6 until everyone has successfully pushed their entry to the consolidated `collision.txt` file on GitHub. 
+Push all branches to the remote (referred to as origin) on GitHub.
+```bash
+git push --all origin
+```
+Go to GitHub and confirm the updated content in `demo-repo`.
 
-**Congratulations, you did it!** You are ready for Lab 02.
+**Add your team member(s) as collaborators to the new GitHub repository.** See the [GitHub instructions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository) for details.
+
+---
+
+### On computer 2 - Team member 2
+
+**Now team member 2 (and 3) is taking the wheel. Team member 1 should observe; all team members should discuss as they proceed.**
+
+On your local computer, clone from GitHub the repo that your team mate invited you to. If you want to use Codespace, start a new Codespace instance from your team mate's repository; you can skip the `git clone` and `cd` step.
+```bash
+git clone https://github.com/ksiller/demo-repo.git
+cd demo-repo
+```
+You only have to do this once. 
+
+Continue and create a new file on this machine. Track, commit, and push back to remote repo on GitHub:
+```bash
+echo "time for a break!" > break.txt
+git add .
+git commit -m "break"
+ls
+git log
+git status
+git push origin main
+```
+
+Go to GitHub and confirm that `break.txt` is now in the `demo-repo`.
+
+---
+
+### Back to Computer 1 - team member 1
+
+```bash
+git status # make sure all local changes are committed, if not commit them before proceeding!
+git log
+```
+Notice the last commit message and hash. Now let's get the latest from the main branch in the remote GitHub repo.
+
+Let's get the latest from the GitHub repository
+```bash
+git fetch origin main
+git switch main # make sure we're on local main branch
+git merge origin/main # merge the remote (origin) main branch into the active local branch 
+git log
+ls
+```
+The directory should now include `break.txt`.
+
+---
+
+#### Resolving conflict: Working on the same file in parallel
+
+### Computer 2 - Team member 2
+
+Create a new file `conflict.txt`. Track, commit, and push it.
+
+```bash
+echo "my version" > conflict.txt
+git add .
+git commit -m "my version"
+git push origin main
+```
+
+---
+
+### Back on computer 1 - Team member 1
+
+At the same time your collaborator is also working on `conflict.txt`.
+
+```bash
+echo "another version" > conflict.txt
+git add . 
+git commit -m "my conflict 1"
+git status
+git log
+```
+So far so good. We created a new file not knowing that the remote repo had a recent update with the same file `conflict.txt` but different content.
+
+```bash
+git fetch origin main
+git switch main
+git merge origin/main
+```
+Boom! Git recognizes that the remote branch we want to merge into main has a different version of `conflict.txt`.
+
+```bash
+git log
+git status
+git diff
+```
+We resolve it in our code editor, and save it.
+
+```bash
+git add .
+git commit -m "resolved conflict"
+git push origin main
+```
+
+**Congratulations! You are a Git Ninja now and ready for [Lab 02](../../labs/02-git/README.md).**
 
 ## Additional Practice
 
@@ -193,11 +460,17 @@ Pull requests (PRs) are a way to propose changes to a repository. When you creat
    git branch -d my-feature
    ```
 
+### Practice With GitHub Skills
+
+1. Go to **[GitHub Skills](https://skills.github.com/)**
+2. Find the first lesson, "Introduction to GitHub" and right-click on the link to open it in a new browser tab.
+3. Read the page closely, paying attention to what you will do in this lesson.
+4. Right-click on the "Start course" button (as instructed) to open it in a new brower tab.
+5. Follow the instructions closely to copy their lesson into your own account.
+6. Once that is complete, wait about 20 seconds and refresh the page in your copy of the lesson.
+7. Follow the instructions to complete the lesson.
+
 ## Advanced Concepts (Optional)
-
-### Working with branches and resolving merge conflicts
-
-For an additional challenge work through the scenario in the [Advanced Git Demo](../../demo/03-git/).
 
 ### Initializing a new repo and connecting it to GitHub with gh cli
 
