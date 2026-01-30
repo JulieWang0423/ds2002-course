@@ -30,7 +30,7 @@ A well-formatted `bash` script begins with a "shebang" line:
 that points to the full path of the `bash` shell. This may differ from one environment
 to the next.
 
-To make any bit of code executable, use `chmod 755` against it.
+To make any bit of code executable, use `chmod +x` on it (or `chmod 755`).
 
 ### Use full paths
 
@@ -54,14 +54,14 @@ tells the script that, upon any error, it should escape/exit the script and stop
 This is important since to proceed past an error may produce very bad results or
 unintended consequences.
 
-Another option is to use conditional, such that when a specific line of the script
+Another option is to use conditionals, such that when a specific line of the script
 fails to execute, the failed line can `exit` with a non-zero code. This can be a useful
-output for debugging
+output for debugging.
 
 ### Sleep
 
 If you need a deliberate pause in the middle of a script, simply `sleep 5` for a 5-second
-pause, etc. This may be especially useful in the midst of `try` logic.
+pause, etc. This may be especially useful when waiting for processes to complete or between retry attempts.
 
 ### Input parameters
 
@@ -74,7 +74,7 @@ arguments when invoking from the command-line:
 - . . .
 
 `positional-args.sh`
-```
+```bash
 #!/bin/bash
 
 echo "$0 <-- invoking script"
@@ -127,7 +127,7 @@ taken by the script, or limit logging to successes or failures.
 
 A common format for logging might be a snippet like this:
 
-```
+```bash
 # First establish the datetime:
 NOW=$(date +"%m-%d-%Y-%H:%M:%S")
 echo $NOW " OK - Successfully processed " $FILENAME >> /var/log/output.log
@@ -142,17 +142,77 @@ to your code. This explains each chunk of code but might also justify why a part
 choice has been made. This will be invaluable to you, when you come back to the code
 two years later, or when your code is shared with others.
 
+Here's a simple example demonstrating good commenting practices:
+
+```bash
+#!/bin/bash
+# This script greets a user by name
+# Usage: ./greet.sh <name>
+
+# Exit immediately if any command fails
+set -e
+
+# Check if a name was provided as an argument
+if [ $# -eq 0 ]; then
+    echo "Error: Please provide a name"
+    exit 1
+fi
+
+# Store the first argument in a variable
+NAME=$1
+
+# Display a personalized greeting
+echo "Hello, $NAME! Welcome to bash scripting."
+```
+
+**Great, you are ready to continue with [Lab 03 - Scripting](../../labs/03-scripting/README.md). Start working on Script 1 in that lab.**
+
 ## Additional Practice
 
-1. Write a primary script in `bash` that does two things:
-  - Invokes a `bash` script to retrieve the log file found in `retrieve-file.sh`.
-  - Invokes a `python3` script to parse that file and write the output
+1. Create a script called `file-info.sh` that:
+   - Accepts a filename as a command-line argument
+   - Checks if the file exists (exit with error if it doesn't)
+   - Displays the file size, line count, and word count
+   - Uses full paths for all commands (`/usr/bin/wc`, etc.)
+   - Includes proper error handling with `set -e`
 
-2. Want a more challenging assignment? Write a `python` script that does both tasks. See the [Python scripting section](../04-python/README.md) for Python-specific guidance.
+2. Create a script called `process-logs.sh` that:
+   - Reads from a log file (provided as an argument)
+   - Filters lines containing "POST" or "GET"
+   - Counts occurrences of each type
+   - Writes a summary report to a new file
+   - Uses pipes to chain commands together
+   
+   **Hint:** You can use the log file from `retrieve-file.sh` (which downloads `http.log` from S3), or create your own sample log file with POST and GET entries for testing.
+
+Explore the bash scripts in [this folder](.).
 
 ## Advanced Concepts (Optional)
 
+1. Write a script called `backup.sh` that:
+   - Takes a directory path as an argument
+   - Creates a timestamped backup directory (e.g., `backup-2024-01-15-14-30-00`)
+   - Copies all files from the source directory to the backup directory
+   - Logs each action to a log file with timestamps
+   - Uses environment variables for paths
+
+2. Write a script called `system-check.sh` that:
+   - Checks if specific commands are available on the system (`python3`, `git`, `curl`)
+   - Uses conditional logic to report which commands are found and which are missing
+   - Exits with appropriate error codes based on what's missing
+   - Logs the results with timestamps
+  
+   **Hint:** Run `which` on a fictional command, check the failed command's exit code with `$?` to get an idea for the exit codes to check for.
+
+3. Write a script called `batch-rename.sh` that:
+   - Takes a directory path and a file extension as arguments
+   - Renames all files with that extension by adding a prefix (e.g., `backup-` before the original name)
+   - Creates a log file documenting all renames
+   - Includes safety checks to prevent overwriting existing files
+  
 ## Resources
 
-<a href="https://linuxconfig.org/bash-scripting-tutorial" target="_blank" rel="noopener noreferrer">Bash scripting tutorial</a>
+- <a href="https://linuxconfig.org/bash-scripting-tutorial" target="_blank" rel="noopener noreferrer">Bash Scripting Tutorial</a>
+- <a href="https://ryanstutorials.net/bash-scripting-tutorial/bash-script.php" target="_blank" rel="noopener noreferrer">Ryan's Bash Scripting Tutorial</a>
+- <a href="https://www.youtube.com/watch?v=tK9Oc6AEnR4" target="_blank" rel="noopener noreferrer">Watch: Bash Scripting Tutorial</a>
 

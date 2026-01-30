@@ -1,13 +1,12 @@
-1. shebang / executable
-2. error out / error codes
-3. input parameters
-4. conditional logic
-5. full paths
-6. logging
-7. comments!
+#!/usr/bin/env python3
 
-
-#####
+# 1. shebang / executable
+# 2. error out / error codes
+# 3. input parameters
+# 4. conditional logic
+# 5. full paths
+# 6. logging
+# 7. comments!
 
 import os
 import re
