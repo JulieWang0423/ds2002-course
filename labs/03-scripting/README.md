@@ -44,17 +44,24 @@ The editorial team wants to analyze word frequency and usage patterns throughout
 
 2. Change to the `mywork/lab3` directory and create a new file `analyze-moby-dick.sh`.
 
-3. Write a bash script that automates the following tasks and meets the following specifications:
+3. The `analyze-moby-dick.sh` bash script should automate the following tasks and meet the following specifications:
 
    a. The script accepts two command line arguments. The first argument is a string that defines the word to search for; the second argument specifies an output file. Internally, the script stores the value of the first command line argument in a variable named `SEARCH_PATTERN` and second in a variable named `OUTPUT`.
 
-   b. Use the curl command to download the text of the Moby Dick novel and save it as `mobydick.txt` in the current directory. The url is <insert url from lab 01>. We used the curl command in  [practice/02-cli](../../practice/02-cli/README.md).
+   b. Use the curl command to download the text of the Moby Dick novel and save it as `mobydick.txt` in the current directory. 
+   
+   **The url is:**
+   ```
+   https://gist.githubusercontent.com/StevenClontz/4445774/raw/1722a289b665d940495645a5eaaad4da8e3ad4c7/mobydick.txt 
+   ```
+   
+   **Hint:** Review [practice/02-cli](../../practice/02-cli/README.md) for using curl to downloading data and saving to a file.
 
-   c. Use the `grep` command to search the `mobydick.txt` file for occurrences of the word specified by the first command line argument, now stored in the `SEARCH_PATTERN` variable.
+   c. Use the `grep` command to search the `mobydick.txt` file for occurrences of the word specified by the first command line argument, now stored in the `SEARCH_PATTERN` variable. **Hint:** Lookup the `grep -o` option.
 
-   d. Use `wc` to count the number of occurrences of the SEARCH_PATTERN returned by grep. Hint: Pipes can be of great help here. Store that number in a new variable `OCCURRENCES`.
+   d. Use `wc` to count the number of occurrences of the SEARCH_PATTERN returned by grep. **Hint:** Pipes can be of great help here. Store that number in a new variable `OCCURRENCES`.
 
-   e. Write to the file specified by `OUTPUT` the following message: "The search pattern <insert_actual_search_pattern> was found <n> time(s)." Replace <insert_actual_search_pattern> and <n> with the proper variable expressions.
+   e. Write to the file specified by `OUTPUT` the following message: "The search pattern `<S>` was found `<N>` time(s)." Replace `<S>` and `<N>` with the proper variable expressions.
 
    **🎉 Success!** Your script is working and the publisher is thrilled! They can now analyze any word in the novel in seconds instead of hours. Move on to Script 2, or push your skills further with the additional challenge below.
    
@@ -65,9 +72,9 @@ The editorial team wants to analyze word frequency and usage patterns throughout
 
    b. If the specified output file already exists, the script should inform the user that the file already exists and abort processing.
 
-   c. In addition to outputting the total number of occurrences, the script will also list the lines in the text where the searched word was found.
+   c. In addition to outputting the total number of occurrences, the script will also list the lines in the text where the searched word was found. **Hint:** check out the `cut` command.
 
-   d. The search should be case-insensitive. Hint: Check the documentation for the `grep` command.
+   d. The search should be case-insensitive. **Hint:** Check the documentation for the `grep` command.
 
 With your bash script complete, you've successfully automated the text analysis workflow and saved the publishing team countless hours. The script demonstrates the power of combining command-line tools like `curl`, `grep`, and `wc` with bash scripting to solve real-world data processing challenges. Now, let's move on to exploring how Python can help us interact with remote APIs and work with more complex data structures.
 
@@ -110,7 +117,7 @@ With your bash script complete, you've successfully automated the text analysis 
     GHUSER = os.getenv('GITHUB_USER')
     ```
 
-    You can test that this works by using Python interactively. Load your imports and execute that line, and you should be able to `print(GHUSER)` to get your username.
+    You can test that this works by using Python interactively. Load your imports and execute that line, and you should be able to `print (GHUSER)` to get your username.
 
 5. Next, we will use this variable to fetch the recent activity for this user account (you!) in GitHub. First let's configure the remote endpoint to get that information. The format for that API address is:
 
@@ -142,6 +149,8 @@ With your bash script complete, you've successfully automated the text analysis 
 
 7. Use `chmod` to make your script executable, add the path to your script to the PATH environment variable in your ~/.bashrc, source the ~/.bashrc, and run it. Make sure no errors occur.
 
+8. **Additional Challenge (Optional):** To take it a step further, explore the keys contained in the returned json data and output additional information for each event.
+    
 **🎉 Success!** You've successfully created a script that interacts with a real-world API! Your script can now fetch live data from GitHub, parse JSON responses, and display meaningful information. This demonstrates the power of Python for working with web APIs—a skill that's essential for accessing data from countless services across the internet. Next, let's explore how to work with environment variables and user input to make your scripts more flexible and interactive.
 
 ## Submit your work
