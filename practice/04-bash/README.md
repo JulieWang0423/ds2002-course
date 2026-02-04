@@ -12,15 +12,19 @@ If the initial examples feel like a breeze, challenge yourself with activities i
 
 ## In-class exercises
 
-All scripts should be written in a way that takes into account several factors:
+Scripts should be written in a way that takes into account several factors:
 
 1. Use the shebang / make the script executable
-2. Error out gracefully --> set -e / error codes --> || exit 1;
-3. Use input parameters
-4. Conditional logic
-5. Environment / full paths / env variables
-6. Logging
-7. Use comments
+2. Use input parameters
+3. Conditional logic
+4. Loops
+5. Sleep
+6. Environment / paths / env variables
+7. Error out gracefully
+8. Logging
+9. Use comments
+
+**Begin your work on Script 1 in [Lab 03 - Scripting](../../labs/03-scripting/README.md).** As you work through the lab, use the sections below as reference for principal scripting concepts.
 
 ### shebang
 A well-formatted `bash` script begins with a "shebang" line:
@@ -32,37 +36,6 @@ to the next.
 
 To make any bit of code executable, use `chmod +x` on it (or `chmod 755`).
 
-### Use full paths
-
-Any binary executables used in a shell script should be invoked using their full
-paths. This is to avoid any ambiguity and preempt any errors of a shell not being
-able to find the command.
-
-For example, when invoking the `aws` command-line in a script you would normally call
-```
-/usr/local/bin/aws
-```
-To determine the full path of an executable in a given system, use the `which` command:
-```
-which aws
-```
-
-### Graceful Errors
-
-In most `bash` shell scripts you may `set -e` near the head of the script. This flag
-tells the script that, upon any error, it should escape/exit the script and stop running.
-This is important since to proceed past an error may produce very bad results or
-unintended consequences.
-
-Another option is to use conditionals, such that when a specific line of the script
-fails to execute, the failed line can `exit` with a non-zero code. This can be a useful
-output for debugging.
-
-### Sleep
-
-If you need a deliberate pause in the middle of a script, simply `sleep 5` for a 5-second
-pause, etc. This may be especially useful when waiting for processes to complete or between retry attempts.
-
 ### Input parameters
 
 Remember that `$0`, `$1`, `$2`, etc. are reserved parameters `bash` understands as positional
@@ -73,7 +46,7 @@ arguments when invoking from the command-line:
 - `$2` is the second parameter ...
 - . . .
 
-`positional-args.sh`
+Review `positional-args.sh` (in this folder).
 ```bash
 #!/bin/bash
 
@@ -81,16 +54,18 @@ echo "$0 <-- invoking script"
 echo "$1 <-- first parameter"
 echo "$2 <-- second parameter"
 ```
-returns the following output:
 
+Run it:
+```bash
+./positional-args.sh bananas blueberries
 ```
-$ ./positional-args.sh bananas blueberries
 
+Output:
+```
 ./positional-args.sh <-- invoking script
 bananas <-- first parameter
 blueberries <-- second parameter
 ```
-
 
 ### If/Else conditional logic:
 
@@ -106,19 +81,45 @@ else
 fi
 ```
 
+### Loops:
+
+Start with `for`, define a `do` loop, end with `done`
+
+```bash
+names=("alice" "bob" "carol")
+for name in "${names[@]}"; do
+    echo "Name: $name"
+done
+```
+
+### Sleep
+
+If you need a deliberate pause in the middle of a script, simply `sleep 5` for a 5-second
+pause, etc. This may be especially useful when waiting for processes to complete or between retry attempts.
+
 ### Environment
 
 `env` gives you all environment variables for your session. This may vary
 for an unattended script (without you around).
 
 Add environment variables in `bash`:
-```
+```bash
 export VARIABLE=value-of-variable
 ```
 
 Use full paths to your binaries to avoid your unattended script being unable
 to locate a binary. Just because you can run it by hand does not mean it can
 run without you around.
+
+### Graceful Errors
+
+In most `bash` shell scripts you may `set -e` near the head of the script. This flag
+tells the script that, upon any error, it should escape/exit the script and stop running.
+This is important since to proceed past an error may produce very bad results or
+unintended consequences.
+
+Another option is to use conditionals, such that when a specific line of the script
+fails to execute, the failed line can `exit` with a non-zero code. You can retrieve the error code of the last executed command with `$?`. This can be useful output for debugging.
 
 ### Logging
 
@@ -135,7 +136,7 @@ echo $NOW " OK - Successfully processed " $FILENAME >> /var/log/output.log
 The result would be a single file building with each row as it is logged.
 Note the `>>` to append to a file instead of overwriting it!
 
-### Comment
+### Comments
 
 One of the most useful habits you can develop as a programmer is adding comments
 to your code. This explains each chunk of code but might also justify why a particular
@@ -164,8 +165,6 @@ NAME=$1
 # Display a personalized greeting
 echo "Hello, $NAME! Welcome to bash scripting."
 ```
-
-**Great, you are ready to continue with [Lab 03 - Scripting](../../labs/03-scripting/README.md). Start working on Script 1 in that lab.**
 
 ## Additional Practice
 
