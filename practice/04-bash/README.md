@@ -20,9 +20,10 @@ Scripts should be written in a way that takes into account several factors:
 4. Loops
 5. Sleep
 6. Environment / paths / env variables
-7. Error out gracefully
-8. Logging
-9. Use comments
+7. Storing a commands output in a variable
+8. Error out gracefully
+9. Logging
+10. Use comments
 
 **Begin your work on Script 1 in [Lab 03 - Scripting](../../labs/03-scripting/README.md).** As you work through the lab, use the sections below as reference for principal scripting concepts.
 
@@ -110,6 +111,23 @@ export VARIABLE=value-of-variable
 Use full paths to your binaries to avoid your unattended script being unable
 to locate a binary. Just because you can run it by hand does not mean it can
 run without you around.
+
+### Storing a command's output in a variable
+
+```bash
+# general format
+VAR=$(command_to_execute)
+```
+
+Example
+```bash
+TODAY=$(date)
+echo $TODAY
+```
+
+Executes the `date` command and stores its output in a variable `TODAY`. Then `echo` the content of `$TODAY` to the terminal.
+
+You are not restricted to a single command. You can also insert a pipeline of commands inside `$( )`.
 
 ### Graceful Errors
 
