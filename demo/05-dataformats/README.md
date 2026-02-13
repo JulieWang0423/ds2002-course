@@ -86,7 +86,7 @@ For this example we use the public [Dog API](https://dogapi.dog). It provides a 
 Let's set an environment variable so we don't have to remember the URL
 
 ```bash
-export DOGS="curl -s https://dogapi.dog/api/v2/breeds/"
+export DOGS="https://dogapi.dog/api/v2/breeds/"
 ```
 
 ```bash 
