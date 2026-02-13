@@ -3,7 +3,6 @@
 .devcontainer/devcontainer.json
 **README_files/
 *.html
-mywork/
 dataprojects/*
 **OLD*
 **class-*
