@@ -1,0 +1,7 @@
+Show Title	Premiere Date	Lead Actor	Role
+Hamilton	2026-01-15	Alexander Hamilton	Lead
+The Phantom of the Opera	2026-01-20	The Phantom	Lead
+Dear Evan Hansen	2026-02-10	Evan Hansen	Lead
+Hadestown	2026-03-05	Orpheus	Lead
+Waitress	2026-04-10	Jenna Hunterson	Lead
+Moulin Rouge!	2026-05-15	Satine	Lead
