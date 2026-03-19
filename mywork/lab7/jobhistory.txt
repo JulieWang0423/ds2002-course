@@ -1,0 +1,44 @@
+JobID           JobName  Partition    Account  AllocCPUS      State ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+10172394     ood_vscode interacti+     ds2002          2     FAILED      1:0 
+10172394.ba+      batch                ds2002          2     FAILED      1:0 
+10172451          hello standard-+     ds2002          1  COMPLETED      0:0 
+10172451.ba+      batch                ds2002          1  COMPLETED      0:0 
+10172573_1   text-array standard-+     ds2002          1  COMPLETED      0:0 
+10172573_1.+      batch                ds2002          1  COMPLETED      0:0 
+10172573_2   text-array standard-+     ds2002          1  COMPLETED      0:0 
+10172573_2.+      batch                ds2002          1  COMPLETED      0:0 
+10172573_3   text-array standard-+     ds2002          1  COMPLETED      0:0 
+10172573_3.+      batch                ds2002          1  COMPLETED      0:0 
+10172573_4   text-array standard-+     ds2002          1  COMPLETED      0:0 
+10172573_4.+      batch                ds2002          1  COMPLETED      0:0 
+10172573_5   text-array standard-+     ds2002          1  COMPLETED      0:0 
+10172573_5.+      batch                ds2002          1  COMPLETED      0:0 
+10172668             pi standard-+     ds2002          1  COMPLETED      0:0 
+10172668.ba+      batch                ds2002          1  COMPLETED      0:0 
+10186422     ood_vscode interacti+     ds2002          2    TIMEOUT      0:0 
+10186422.ba+      batch                ds2002          2  CANCELLED     0:15 
+10350652     ood_vscode interacti+     ds2002          2    RUNNING      0:0 
+10350652.ba+      batch                ds2002          2    RUNNING      0:0 
+10352452     serial-bo+ standard-+     ds2002          1  COMPLETED      0:0 
+10352452.ba+      batch                ds2002          1  COMPLETED      0:0 
+10352510_1   serial-bo+ standard-+     ds2002          1     FAILED      2:0 
+10352510_1.+      batch                ds2002          1     FAILED      2:0 
+10352510_2   serial-bo+ standard-+     ds2002          1     FAILED      2:0 
+10352510_2.+      batch                ds2002          1     FAILED      2:0 
+10352510_3   serial-bo+ standard-+     ds2002          1     FAILED      2:0 
+10352510_3.+      batch                ds2002          1     FAILED      2:0 
+10352510_4   serial-bo+ standard-+     ds2002          1     FAILED      2:0 
+10352510_4.+      batch                ds2002          1     FAILED      2:0 
+10352510_5   serial-bo+ standard-+     ds2002          1     FAILED      2:0 
+10352510_5.+      batch                ds2002          1     FAILED      2:0 
+10352528_1   jobarray-+ standard-+     ds2002          1  COMPLETED      0:0 
+10352528_1.+      batch                ds2002          1  COMPLETED      0:0 
+10352528_2   jobarray-+ standard-+     ds2002          1  COMPLETED      0:0 
+10352528_2.+      batch                ds2002          1  COMPLETED      0:0 
+10352528_3   jobarray-+ standard-+     ds2002          1  COMPLETED      0:0 
+10352528_3.+      batch                ds2002          1  COMPLETED      0:0 
+10352528_4   jobarray-+ standard-+     ds2002          1  COMPLETED      0:0 
+10352528_4.+      batch                ds2002          1  COMPLETED      0:0 
+10352528_5   jobarray-+ standard-+     ds2002          1  COMPLETED      0:0 
+10352528_5.+      batch                ds2002          1  COMPLETED      0:0 
