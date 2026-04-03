@@ -24,6 +24,10 @@ pip install --user requests pandas
 
 The `--user` flag directs the installation into a personal package library in your home directory `~/.local`.
 
+### Optional: inspect JSON with `jq` on the CLI
+
+This lab uses Python to parse JSON from the ISS API. For quick exploration of JSON in the terminal (pretty-printing, picking fields, filtering arrays), install **`jq`** if it is not already available (`sudo apt install jq` on many Linux systems, or `brew install jq` on macOS). The **[CLI: `jq`](../../practice/05-dataformats/README.md#cli-jq)** section in **Practice 05 (Data formats)** walks through filters, pipes, and real API examples. Those skills transfer directly to other JSON-heavy tools—for example piping **`aws ec2 describe-instances`** through `jq` in [Lab 09: EC2](../09-ec2/README.md).
+
 ## Tracking the International Space Station
 
 **The Case:** You've just been contacted by a space enthusiast group that's organizing a "Spot the ISS" event. They want to track the International Space Station's position over time to help participants know when and where to look in the sky. The group has been manually checking the ISS location API every few minutes and writing down coordinates—a tedious and error-prone process that's taking up all their time.
