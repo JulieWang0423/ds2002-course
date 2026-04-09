@@ -1,0 +1,27 @@
+production_id	title	genre	opening_date
+1	Hamilton	Musical	2026-01-15
+2	Dear Evan Hansen	Musical	2026-02-10
+3	Wicked	Musical	2025-11-20
+4	Hadestown	Folk Opera	2026-03-05
+5	The Lion King	Musical	2025-09-12
+6	Les Misérables	Epic Musical	2025-12-01
+7	The Phantom of the Opera	Musical	2026-01-20
+8	Waitress	Musical	2026-04-10
+9	Six	Pop Musical	2025-10-30
+10	Moulin Rouge!	Jukebox Musical	2026-05-15
+11	Chicago	Musical	2026-06-01
+member_id	full_name	role_type	production_id
+1	Alexander Hamilton	Lead	1
+2	Evan Hansen	Lead	2
+3	Elphaba	Lead	3
+4	Orpheus	Lead	4
+5	Simba	Lead	5
+6	Jean Valjean	Lead	6
+7	The Phantom	Lead	7
+8	Jenna Hunterson	Lead	8
+9	Anne Boleyn	Lead	9
+10	Satine	Lead	10
+11	Roxie Hart	Lead	11
+12	Velma Kelly	Lead	11
+13	Billy Flynn	Lead	11
+14	Matron Mama Morton	Supporting	11
